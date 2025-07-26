@@ -1,3 +1,5 @@
+# Coding Challenges
+
 ## WC Tool
 
 ### Step one
