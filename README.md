@@ -61,3 +61,36 @@ Output:
 ```
 342190 7145 58164 339292
 ```
+
+### Todo: 
+- [ ] -lm and combination options should also work
+- [ ] Unit tests
+- [ ] validations
+
+### Learnings:
+
+#### UTF-8 Encoding Overview
+
+UTF-8 is a variable-width character encoding used to represent Unicode characters. It uses 1 to 4 bytes per character depending on the Unicode code point.
+
+| Bytes | Unicode Range (Hex)    | Usage Examples                                                                 |
+|-------|------------------------|--------------------------------------------------------------------------------|
+| 1     | U+0000 – U+007F        | Basic ASCII characters (English letters, digits, control characters, etc.)    |
+| 2     | U+0080 – U+07FF        | Latin-1 Supplement, Latin Extended-A, Greek, Cyrillic, Arabic, Hebrew, etc.   |
+| 3     | U+0800 – U+FFFF        | Most common characters in BMP including CJK (Chinese, Japanese, Korean), etc.|
+| 4     | U+010000 – U+10FFFF    | Supplementary characters: rare symbols, emojis, historical scripts, etc.      |
+
+> **Note:** All UTF-8 byte sequences are backwards-compatible with ASCII.
+
+#### Using stdin for reading piped input
+
+```
+    process.stdin.on('data', chunk => {
+        data += chunk.toString();
+    });
+    process.stdin.on('end', () => {
+        console.log(data)
+        content = data;
+        executeCommand(command);
+    });
+```
